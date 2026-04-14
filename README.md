@@ -29,15 +29,17 @@ You must be running an Ubuntu 64‑bit VM with at least 2 GB of RAM and 2 CPU co
      will work. Include Docker, Docker Compose, and anything else required. -->
 
 # Getting Started
-create a environment file "cp .env.example .env"
+A new teammate should begin by cloning the repository and moving into the project directory. After that, they must create their own environment file by running: cp .env.example .env
+
+Once the .env file is created and filled in, they can start the stack by running: docker compose up --build
+
+This will build the images, start all three services, and bring the application online.
 
 <!-- Explain how a new teammate would bring this stack up from a fresh clone.
      Walk through every command they need to run, in order. -->
 
 # Configuration
-A new teammate should begin by cloning the repository and moving into the project directory. After that, they must create their own environment file by running: cp .env.example .env
-Once the .env file is created and filled in, they can start the stack by running: docker compose up --build
-This will build the images, start all three services, and bring the application online.
+The .env file stores the database credentials that both MariaDB and Flask need in order to run. It contains values for DB_ROOT_PASSWORD, DB_NAME, DB_USER, and DB_PASSWORD. These variables are not included in the repository for security reasons, so each teammate must create their own .env file from the .env.example template and provide their own password values before bringing the stack up.
 
 <!-- Explain the .env file: what it is, what variables it contains,
      and what a teammate needs to provide that is not in this repository. -->
