@@ -17,35 +17,40 @@ The application code and scaffolding are provided. Your job is to complete the D
 ---
 
 # Project Overview
-This application is a simple web‑based ticketing system that lets users submit and view support tickets in one place. It solves the problem of not having a centralized system to track issues by storing tickets in a database and exposing them through a web interface. The user interacts with the “Docker Lab – Ticketing System” webpage, where they can see existing tickets, check API health, and create new tickets through the form.
+The app works as a ticketing system website. Users can submit, view and complete ticket requests in a convinent format. This app solves the problem of not having a dedicated  system for track work issues. The app stores tickets in a database and presents them in a compact webpage. The “Docker Lab – Ticketing System” webpage is the main page for viewing existing tickets and creating new tickets, but this can also be done from the command line.
 
 <!-- Briefly describe what this application does in your own words.
      What problem does it solve? What does a user interact with? -->
 
 # Prerequisites
-You must be running an Ubuntu 64‑bit VM with at least 2 GB of RAM and 2 CPU cores. Docker and Docker Compose must be installed and working, and your user must be added to the docker group so Docker commands can run without sudo. The VM also needs the components used inside the containers: Apache, MariaDB, and Flask, which will be installed automatically when their Docker images are built.
+The VM used to run the application was run using an Ubuntu 64‑bit OS with at  2 GB of RAM and 2 CPU cores. Docker and Docker Compose must be installed and working. This application used Docker version 28.1.1 and Docker Compose version v2.35.1. The app also needs the components used inside the containers: Apache, MariaDB, and Flask, which will be installed automatically when their Docker images are built. This uses Apache2 version Apache/2.4.41. 
 
 <!-- List what needs to be installed or configured on the VM before this lab
      will work. Include Docker, Docker Compose, and anything else required. -->
 
 # Getting Started
-A new teammate should begin by cloning the repository and moving into the project directory. After that, they must create their own environment file by running: cp .env.example .env
+For someone new, begin by cloning the repository and moving to the project directory. Create your own environment file: cp .env.example .env
 
-Once the .env file is created and filled in, they can start the stack by running: docker compose up --build
+With a working .env file, fill in the information to include appropriate environment variables.
 
-This will build the images, start all three services, and bring the application online.
+The stack is run through one command: docker compose up --build
+
+The images will be built, starting all three services, and bring the application online.
 
 <!-- Explain how a new teammate would bring this stack up from a fresh clone.
      Walk through every command they need to run, in order. -->
 
 # Configuration
-The .env file stores the database credentials that both MariaDB and Flask need in order to run. It contains values for DB_ROOT_PASSWORD, DB_NAME, DB_USER, and DB_PASSWORD. These variables are not included in the repository for security reasons, so each teammate must create their own .env file from the .env.example template and provide their own password values before bringing the stack up.
+The .env file stores database credentials used by both MariaDB and Flask in order to function. Of which, the most important are DB_ROOT_PASSWORD, DB_NAME, DB_USER, and DB_PASSWORD. These variables are not included in the repository. For every new instance of the application, a new .env file must be made with its own password values before bringing the stack up.
 
 <!-- Explain the .env file: what it is, what variables it contains,
      and what a teammate needs to provide that is not in this repository. -->
 
 # Verification
-To confirm the stack is running correctly, first check that the db and app containers show a healthy status using docker compose ps, while the web container shows running. Next, verify that the frontend loads by visiting http://<your‑VM‑IP>:80 and confirming the dashboard displays a green “API healthy” indicator and the seed ticket. You should also confirm that the health endpoint works through Apache by running curl http://localhost:80/health and that the API returns ticket data from the database. Once all manual checks pass, run the provided check-lab.sh script; a passing run will show all tests marked as PASS with no failures.
+To verify the stack functions a manual check is provided: check the db and app containers healthy status using docker compose ps. The web container should show as running. Next, verify that the frontend webpage loads by visiting http://<YOUR‑SPECIFIC‑IP>:80 and confirming that the dashboard displays a green “healthy” indicator. Finally, confirm the Apache  the health endpointby through this command: curl http://localhost:80/health
+The API should be returning ticket data from the database. 
+
+A "check-lab.sh" script has been provided for automatic verification of the app. The script will work to verify the health of the container, the connection to Apache, the health endpoint of Flask, the API functionality, the Data Persistence and Netowrking. A fully functioning application will finish a passing run, showing all tests marked as PASS with no failures.
 
 <!-- Describe how to confirm the stack is running correctly.
      Reference the check script and what a passing run looks like. -->
