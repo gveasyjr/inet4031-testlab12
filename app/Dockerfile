@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # The file is called app.py and it should go into the current directory ( . )
 # Syntax: COPY <file-on-your-machine> <destination-inside-container>
 #
-# COPY ___________ .
+COPY app.py .
+CMD ["python", "app.py"]
 
 # This line docuemnts which network port Flask is listening on inside the container. 
 # When the container is ran, Docker will know to forward traffic from the host machine to this port inside the container.
